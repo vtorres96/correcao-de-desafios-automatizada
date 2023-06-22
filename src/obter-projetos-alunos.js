@@ -15,7 +15,7 @@ function runCommands(commands) {
 
 // Configurações básicas
 const owner = 'cubos-academy';
-const repo = '';
+const repo = process.env.REPOSITORIO_DESAFIO;
 const accessToken = process.env.ACCESS_TOKEN_GITHUB;
 
 // Função para obter a lista de nomes dos usuários
