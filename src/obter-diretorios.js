@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Diretório raiz
-const rootDirectory = '../Desafio-MO2';
+const rootDirectory = './Desafios-M02';
 
 // Função para percorrer subdiretórios recursivamente
 function percorrerSubdiretorios(diretorioAtual) {
@@ -35,7 +35,7 @@ const data = {
 };
 
 // Caminho do arquivo JSON
-const arquivoSubdiretorios = './01-automatizacao-correcao/subdiretorios.json';
+const arquivoSubdiretorios = './subdiretorios.json';
 
 // Escreve o objeto como JSON no arquivo
 fs.writeFileSync(arquivoSubdiretorios, JSON.stringify(data, null, 2));
