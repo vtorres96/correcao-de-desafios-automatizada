@@ -15,7 +15,7 @@ function runCommands(commands) {
 
 // Configurações básicas
 const owner = 'cubos-academy';
-const repo = 'desafio-backend-modulo-02-sistema-bancario-dbe-t02';
+const repo = '';
 const accessToken = process.env.ACCESS_TOKEN_GITHUB;
 
 // Função para obter a lista de nomes dos usuários
@@ -30,18 +30,20 @@ async function getPullRequestCreators() {
     const pullRequests = response.data;
     const prData = pullRequests.map((pr) => ({ title: pr.title, creator: pr.user.login }));
     
-    // Sequência de comandos a serem executados
-    const commands = [
-      `mkdir ${prData[0].title.replace(/ /g, '-')}`,
-      `cd ${prData[0].title.replace(/ /g, '-')}`,
-      `git clone git@github.com:${prData[0].creator}/${repo}.git`,
-      `cd ${repo}`,
-      'npm install',
-      'cd ../../'
-    ];
-
-    // Executa os comandos em sequência
-    runCommands(commands);
+    // Loop para executar os comandos para cada item em prData
+    prData.forEach((item) => {
+      const commands = [
+        `mkdir ${item.title.replace(/ /g, '-')}`,
+        `cd ${item.title.replace(/ /g, '-')}`,
+        `git clone git@github.com:${item.creator}/${repo}.git`,
+        `cd ${repo}`,
+        'npm install',
+        'cd ../../'
+      ];
+      
+      // Executa os comandos em sequência para o item atual
+      runCommands(commands);
+    });
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }
