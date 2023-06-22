@@ -10,22 +10,6 @@ Esse projeto tem propósito automatizar o processo de correção dos desafios de
 
 ## Passo 1
 
-criar um diretório para centralizar os projetos dos alunos, por exemplo `Desafios-M02-Turma`.
-
-```
-mkdir Desafios-M02-Turma
-```
-
-## Passo 2
-
-Ingressar no diretório `Desafios-M02-Turma`
-
-```
-cd Desafios-M02-Turma
-```
-
-## Passo 3
-
 Clonar repositórios de todos os alunos através das Pull Requests
 
 Para concluir esse passo de uma maneira eficiente temos o script `obter-projetos-alunos.js`, mas, antes de executá-lo, temos algumas orientações abaixo, para que tenha êxito
@@ -50,7 +34,7 @@ Por fim, executar o script `obter-projetos-alunos.js`.
 node obter-projetos-alunos.js
 ```
 
-## Passo 4
+## Passo 2
 
 Registrar os diretórios contendo o nome dos alunos em um arquivo JSON para que no momento da execução do script de teste automatizado, não ocorra falha na execução por erro de nomenclatura de diretório.
 
@@ -60,7 +44,7 @@ Para isso temos o script `obter-diretorios.js`, que criará um arquivo entitulad
 node obter-diretorios.js
 ```
 
-## Passo 5 (melhorar processo para executar em massa, atualmente só executa de 1 em 1 manualmente)
+## Passo 3 (melhorar processo para executar em massa, atualmente só executa de 1 em 1 manualmente)
 
 Executar o script `iniciar-servidor.js` para iniciar o servidor
 
@@ -68,7 +52,7 @@ Executar o script `iniciar-servidor.js` para iniciar o servidor
 node correcao-automatizada-modulo-02-sistema-bancario/iniciar-servidor.js
 ```
 
-## Passo 6
+## Passo 4
 
 Após iniciar o servidor basta abrir outro terminal executar o script `executar-collection.js` para executar a coleção de testes automatizados e depois analisar o arquivo `log.txt` que será gerado em cada projeto para cada aluno.
 
