@@ -1,0 +1,2196 @@
+{
+	"info": {
+		"_postman_id": "57f15de0-cb7d-4b38-aa63-45ca4f2b1dfe",
+		"name": "Resolução Desafio Backend M02 - SIstema Bancário",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8998049"
+	},
+	"item": [
+		{
+			"name": "Contas",
+			"item": [
+				{
+					"name": "Criar Conta",
+					"item": [
+						{
+							"name": "Verificar campos obrigatórios",
+							"item": [
+								{
+									"name": "Adicionar conta sem informar nome (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao não informar nome, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"Teste@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/contas",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Adicionar conta sem informar e-mail (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao não informar e-mail, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nome\": \"Tester1\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/contas",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Adicionar conta sem informar cpf (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao não informar cpf, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/contas",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Adicionar conta sem informar data de nascimento (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao não informar data de nascimento, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/contas",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Adicionar conta sem informar telefone (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao não informar telefone, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"senha\": \"test123@\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/contas",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Adicionar conta sem informar senha (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao não informar senha, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/contas",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Adicionar conta informando corpo da requisição completo (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar corpo da requisição completo, deve retornar 201\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar conta informando cpf existente (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar CPF duplicado, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester Erro\",\n    \"email\": \"TesterErro@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar conta informando e-mail existente (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar E-mail duplicado, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester Erro\",\n    \"email\": \"Teste@Teste.com\",\n    \"cpf\": \"44444444444\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar conta informando corpo da requisição completo (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar corpo da requisição completo, deve retornar 201\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester2\",\n    \"email\": \"Teste2@Teste.com\",\n    \"cpf\": \"22222222222\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"88888888888\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar conta informando corpo da requisição completo (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar corpo da requisição completo, deve retornar 201\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester3\",\n    \"email\": \"Teste3@Teste.com\",\n    \"cpf\": \"33333333333\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"55555555555\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar conta informando corpo da requisição completo (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar corpo da requisição completo, deve retornar 201\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester4\",\n    \"email\": \"Teste4@Teste.com\",\n    \"cpf\": \"44444444444\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"44444444444\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Listar Contas",
+					"item": [
+						{
+							"name": "Listar contas sem senha informada (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao deixar de informar a senha, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar contas informando senha incorreta (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar a senha incorreta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas?senha_banco=CubosBank123",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									],
+									"query": [
+										{
+											"key": "senha_banco",
+											"value": "CubosBank123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar contas informando senha correta (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar senha correta, deve retornar quatro registros existentes e status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"",
+											"    const responseJson = pm.response.json()",
+											"",
+											"    pm.expect(responseJson).to.have.length(4)",
+											"",
+											"    pm.expect(responseJson[0].saldo).to.eql(0)",
+											"    pm.expect(responseJson[0].usuario.nome).to.eql(\"Tester1\")",
+											"    pm.expect(responseJson[0].usuario.cpf).to.eql(\"11111111111\")",
+											"    pm.expect(responseJson[0].usuario.telefone).to.eql(\"99999999999\")",
+											"",
+											"    pm.expect(responseJson[1].saldo).to.eql(0)",
+											"    pm.expect(responseJson[1].usuario.nome).to.eql(\"Tester2\")",
+											"    pm.expect(responseJson[1].usuario.cpf).to.eql(\"22222222222\")",
+											"    pm.expect(responseJson[1].usuario.telefone).to.eql(\"88888888888\")",
+											"",
+											"    pm.expect(responseJson[2].saldo).to.eql(0)",
+											"    pm.expect(responseJson[2].usuario.nome).to.eql(\"Tester3\")",
+											"    pm.expect(responseJson[2].usuario.cpf).to.eql(\"33333333333\")",
+											"    pm.expect(responseJson[2].usuario.telefone).to.eql(\"55555555555\")",
+											"",
+											"    pm.expect(responseJson[3].saldo).to.eql(0)",
+											"    pm.expect(responseJson[3].usuario.nome).to.eql(\"Tester4\")",
+											"    pm.expect(responseJson[3].usuario.cpf).to.eql(\"44444444444\")",
+											"    pm.expect(responseJson[3].usuario.telefone).to.eql(\"44444444444\")",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									],
+									"query": [
+										{
+											"key": "senha_banco",
+											"value": "{{senha_banco}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atualizar Conta",
+					"item": [
+						{
+							"name": "Atualizar conta informando corpo da requisição completo (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar corpo da requisição completo, deve retornar status code 204\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester3Alterado\",\n    \"email\": \"Teste3Alterado@Teste.com\",\n    \"cpf\": \"99999999999\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"44444444444\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas/3/usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"3",
+										"usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar conta informando cpf existente (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar CPF duplicado, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester3Alterado\",\n    \"email\": \"Teste3Alterado@Teste.com\",\n    \"cpf\": \"11111111111\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"44444444444\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas/3/usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"3",
+										"usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar conta informando e-mail existente (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar E-mail duplicado, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester3Alterado\",\n    \"email\": \"Teste2@Teste.com\",\n    \"cpf\": \"99999999999\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"44444444444\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/contas/3/usuario",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"3",
+										"usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar contas após atualizar conta de número 3 (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Listar contas após atualização para verificar se a conta número 3 teve as propriedades alteradas, deve retornar três registros existentes e status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"",
+											"    const responseJson = pm.response.json()",
+											"    pm.expect(responseJson).to.have.length(4)",
+											"",
+											"    pm.expect(responseJson[2].saldo).to.eql(0)",
+											"    pm.expect(responseJson[2].usuario.nome).to.eql(\"Tester3Alterado\")",
+											"    pm.expect(responseJson[2].usuario.cpf).to.eql(\"99999999999\")",
+											"    pm.expect(responseJson[2].usuario.telefone).to.eql(\"44444444444\")",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									],
+									"query": [
+										{
+											"key": "senha_banco",
+											"value": "{{senha_banco}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Conta",
+					"item": [
+						{
+							"name": "Verificar se exclui com saldo em conta",
+							"item": [
+								{
+									"name": "Depositar saldo para analisar exclusão (Deve retornar sucesso)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Depositando para exclusao - Ao informar número de conta existente e valor acima de zero, deve retornar status code 200\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"numero_conta\": \"4\",\n\t\"valor\": 1000\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/transacoes/depositar",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"transacoes",
+												"depositar"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Excluir conta que possui saldo (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Ao informar número de conta que possui saldo, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/contas/4",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"contas",
+												"4"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Excluir conta informando número de conta existente (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar número de conta existente, deve retornar status code 204\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas/3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Excluir conta informando número de conta inexistente (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar um número de conta inexistente, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas/3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar contas após exclusão (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar senha correta, deve retornar três registros existentes e status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"",
+											"    const responseJson = pm.response.json()",
+											"",
+											"    pm.expect(responseJson).to.have.length(3)",
+											"",
+											"    pm.expect(responseJson[0].saldo).to.eql(0)",
+											"    pm.expect(responseJson[0].usuario.nome).to.eql(\"Tester1\")",
+											"    pm.expect(responseJson[0].usuario.cpf).to.eql(\"11111111111\")",
+											"    pm.expect(responseJson[0].usuario.telefone).to.eql(\"99999999999\")",
+											"",
+											"    pm.expect(responseJson[1].saldo).to.eql(0)",
+											"    pm.expect(responseJson[1].usuario.nome).to.eql(\"Tester2\")",
+											"    pm.expect(responseJson[1].usuario.cpf).to.eql(\"22222222222\")",
+											"    pm.expect(responseJson[1].usuario.telefone).to.eql(\"88888888888\")",
+											"",
+											"    pm.expect(responseJson[2].saldo).to.eql(1000)",
+											"    pm.expect(responseJson[2].usuario.nome).to.eql(\"Tester4\")",
+											"    pm.expect(responseJson[2].usuario.cpf).to.eql(\"44444444444\")",
+											"    pm.expect(responseJson[2].usuario.telefone).to.eql(\"44444444444\")",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									],
+									"query": [
+										{
+											"key": "senha_banco",
+											"value": "{{senha_banco}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Saldo",
+			"item": [
+				{
+					"name": "Exibir saldo informando número de conta existente e senha correta (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao informar número de conta existente e senha correta, deve retornar a propriedade saldo e status code 200\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"",
+									"    const responseJson = pm.response.json()",
+									"    pm.expect(responseJson.saldo).to.eql(0)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"saldo"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "2",
+									"description": "req.params"
+								},
+								{
+									"key": "senha",
+									"value": "test123@",
+									"description": "req.params"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir saldo com número de conta existente e senha incorreta (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao informar número de conta existente e senha incorreta,  deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@errada",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"saldo"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "2"
+								},
+								{
+									"key": "senha",
+									"value": "test123@errada"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir saldo com número de conta inexistente e senha inexistente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao informar número de conta inexistente e senha inexistente, deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/saldo?numero_conta=10&senha=test123@errada",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"saldo"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "10"
+								},
+								{
+									"key": "senha",
+									"value": "test123@errada"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir saldo sem informar número de conta e senha (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao não informar número de conta e senha, deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/saldo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"saldo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transacoes",
+			"item": [
+				{
+					"name": "Depósito",
+					"item": [
+						{
+							"name": "Depositar saldo informando número de conta existente e valor acima de zero (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar número de conta existente e valor acima de zero, deve retornar status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta\": \"2\",\n\t\"valor\": 1000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/depositar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"depositar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Depositar saldo sem informar número de conta (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar número de conta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"valor\": 1000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/depositar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"depositar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Depositar saldo sem informar valor a ser depositado (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar valor, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/depositar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"depositar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Depositar saldo informando valor igual a zero (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar o valor igual a zero, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\",\n    \"valor\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/depositar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"depositar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Exibir saldo após efetuar depósito na conta de número 2 (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao consultar saldo da conta de número 2, deve retornar a propriedade saldo com 1000 e status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"",
+											"    const responseJson = pm.response.json()",
+											"    pm.expect(responseJson.saldo).to.eql(1000)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"saldo"
+									],
+									"query": [
+										{
+											"key": "numero_conta",
+											"value": "2"
+										},
+										{
+											"key": "senha",
+											"value": "test123@"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Saque",
+					"item": [
+						{
+							"name": "Sacar saldo informando número de conta existente, senha correta e valor acima de zero (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar número de conta existente, senha correta e valor acima de zero, deve retornar status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\",\n    \"valor\": 100,\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/sacar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"sacar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sacar saldo sem informar número de conta (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar número de conta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"valor\": 100,\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/sacar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"sacar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sacar saldo sem informar valor a ser sacado (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar valor, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/sacar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"sacar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sacar saldo sem informar senha (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar senha da conta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\",\n    \"valor\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/sacar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"sacar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sacar saldo informando senha incorreta (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar senha incorreta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\",\n    \"valor\": 100,\n    \"senha\": \"test123@errada\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/sacar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"sacar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Exibir saldo após efetuar saque na conta de número 2 (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao consultar saldo da conta de número 2, deve retornar a propriedade saldo com 900 e status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"",
+											"    const responseJson = pm.response.json()",
+											"    pm.expect(responseJson.saldo).to.eql(900)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas",
+										"saldo"
+									],
+									"query": [
+										{
+											"key": "numero_conta",
+											"value": "2"
+										},
+										{
+											"key": "senha",
+											"value": "test123@"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Transferência",
+					"item": [
+						{
+							"name": "Transferir valor informando corpo completo (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar número de conta de origem e destino existentes, senha correta e valor, deve retornar status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 200,\n\t\"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir valor sem informar número de conta de origem (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar número de conta de origem, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 200,\n\t\"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir valor sem informar número de conta de destino (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar número de conta de destino, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"valor\": 200,\n\t\"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir valor sem informar valor (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar valor, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir valor sem informar senha (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao não informar senha, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 200\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir valor informando senha incorreta (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar senha da conta de origem incorreta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 200,\n\t\"senha\": \"test123@errada\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar contas após transferência (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Listar contas após transferência para verificar se a transferência ocorreu, deve retornar status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"    const responseJson = pm.response.json()",
+											"    pm.expect(responseJson).to.have.length(3)",
+											"",
+											"    pm.expect(responseJson[0].saldo).to.eql(200)",
+											"    pm.expect(responseJson[0].usuario.nome).to.eql(\"Tester1\")",
+											"    pm.expect(responseJson[0].usuario.telefone).to.eql(\"99999999999\")",
+											"",
+											"    pm.expect(responseJson[1].saldo).to.eql(700)",
+											"    pm.expect(responseJson[1].usuario.nome).to.eql(\"Tester2\")",
+											"    pm.expect(responseJson[1].usuario.telefone).to.eql(\"88888888888\")",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"contas"
+									],
+									"query": [
+										{
+											"key": "senha_banco",
+											"value": "{{senha_banco}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Extrato",
+			"item": [
+				{
+					"name": "Exibir extrato informando número de conta existente e senha correta (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao informar número de conta existente e senha correta, deve retornar status code 200\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"",
+									"    // verificando propriedades retornadas no corpo da requisicao",
+									"    pm.response.json().hasOwnProperty(\"depositos\")",
+									"    pm.response.json().hasOwnProperty(\"saques\")",
+									"    pm.response.json().hasOwnProperty(\"transferenciasEnviadas\")",
+									"    pm.response.json().hasOwnProperty(\"transferenciasRecebidas\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/extrato?numero_conta=2&senha=test123@",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"extrato"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "2"
+								},
+								{
+									"key": "senha",
+									"value": "test123@"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir extrato sem informar número de conta e senha (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao não informar número de conta e senha, deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/extrato",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"extrato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir extrato informando número de conta inexistente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao informar número de conta inexistente, deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/extrato?numero_conta=10&senha=test123@",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"extrato"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "10"
+								},
+								{
+									"key": "senha",
+									"value": "test123@"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exibir extrato informando número de conta existente e senha incorreta (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ao informar número de conta existente e senha incorreta, deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contas/extrato?numero_conta=2&senha=test123invalid",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contas",
+								"extrato"
+							],
+							"query": [
+								{
+									"key": "numero_conta",
+									"value": "2"
+								},
+								{
+									"key": "senha",
+									"value": "test123invalid"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "default"
+		},
+		{
+			"key": "senha_banco",
+			"value": "Cubos123Bank",
+			"type": "default"
+		}
+	]
+}
