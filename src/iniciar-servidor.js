@@ -26,7 +26,7 @@ async function processar(diretorio) {
         if (executaProcesso) {
           executaProcesso = false
           await iniciarProcessamentoColecao(diretorio);
-          processo.kill();
+          process.exit();
         }
       }, 5000);
     });
