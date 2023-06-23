@@ -1,13 +1,18 @@
+const path = require('path');
 const { exec } = require('child_process');
+// const { automatizarAnalise } = require('./executar-collection');
 
 // Array com os diretórios dos projetos
-const projeto = require('./subdiretorios.json')["subdiretorios"][65];
+const projeto = require('../subdiretorios.json')["subdiretorios"][3];
 
 async function iniciarServidor(diretorio) {
   console.log('Iniciando servidor...');
 
+  // Constrói o caminho absoluto do diretório aluno-01
+  const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios-M02', diretorio);
+
   // Ingressa no diretório do projeto
-  process.chdir(diretorio);
+  process.chdir(caminhoAbsoluto);
 
   // Retorna uma Promise que resolve quando o servidor é iniciado
   return new Promise((resolve, reject) => {
