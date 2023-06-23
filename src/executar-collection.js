@@ -5,9 +5,6 @@ const newman = require('newman');
 // Carrega o arquivo JSON da coleção
 const collection = require('./desafio-m02-collection.json');
 
-// Array com os diretórios dos projetos
-const projeto = require('../subdiretorios.json')["subdiretorios"][32];
-
 // Função para executar a coleção no Postman
 function executarColecao(collection) {
   console.log('Iniciando execução da coleção...');

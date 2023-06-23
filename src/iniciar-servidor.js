@@ -2,15 +2,12 @@ const path = require('path');
 const { exec } = require('child_process');
 const { iniciarProcessamentoColecao } = require('./executar-collection');
 
-// Array com os diretórios dos projetos
 const projeto = require('../subdiretorios.json')["subdiretorios"][32];
 
 let processo;
 
-async function iniciarServidor(diretorio) {
+async function processar(diretorio) {
   console.log('Iniciando servidor...');
-
-  // Constrói o caminho absoluto do diretório aluno-01
   let diretorioDesafio = `${diretorio}/desafio-backend-modulo-02-sistema-bancario-dbe-t02`
   const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios-M02', diretorioDesafio);
 
@@ -31,7 +28,7 @@ async function iniciarServidor(diretorio) {
           await iniciarProcessamentoColecao(diretorio);
           processo.kill();
         }
-      }, 5000); // Timeout de 5 segundos
+      }, 5000);
     });
 
     processo.stderr.on('data', (data) => {
@@ -53,16 +50,8 @@ async function iniciarServidor(diretorio) {
 // Função principal para automatizar o processo
 async function iniciarAnalise(projeto) {
     console.log(`Analisando o projeto do aluno: ${projeto}`);
-    let diretorioDesafio = `${projeto}/desafio-backend-modulo-02-sistema-bancario-dbe-t02`
     try {
-      // Iniciar o servidor
-      await iniciarServidor(projeto);
-      
-      // // Após o servidor ser iniciado, chamar a função iniciarProcessamentoColecao()
-      // await iniciarProcessamentoColecao(projeto);
-
-      // Encerrar o servidor
-      encerrarServidor();
+      await processar(projeto);
     } catch (error) {
       console.log('Ocorreu um erro:', error);
     }
@@ -70,9 +59,9 @@ async function iniciarAnalise(projeto) {
 
 // Função para encerrar o servidor
 function encerrarServidor() {
-  if (servidorProcesso) {
+  if (processo) {
     console.log('Encerrando servidor...');
-    servidorProcesso.kill();
+    processo.kill();
   }
 }
 
