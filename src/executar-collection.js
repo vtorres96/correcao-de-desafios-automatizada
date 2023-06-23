@@ -1,3 +1,4 @@
+const path = require('path');
 const fs = require('fs');
 const newman = require('newman');
 
@@ -5,7 +6,7 @@ const newman = require('newman');
 const collection = require('./desafio-m02-collection.json');
 
 // Array com os diretórios dos projetos
-const projeto = require('./subdiretorios.json')["subdiretorios"][65];
+const projeto = require('../subdiretorios.json')["subdiretorios"][32];
 
 // Função para executar a coleção no Postman
 function executarColecao(collection) {
@@ -35,24 +36,26 @@ function executarColecao(collection) {
 
 // Função para escrever o log dos endpoints não aprovados
 function escreverLog(diretorio, log) {
-  const logFilePath = `./${diretorio}/log.txt`;
+  // Constrói o caminho absoluto do diretório aluno-01
+  const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios-M02', diretorio);
+  const logFilePath = `${caminhoAbsoluto}/log.txt`;
 
   fs.appendFileSync(logFilePath, log);
 }
 
 // Função principal para automatizar o processo
-async function automatizarAnalise() {
+async function iniciarProcessamentoColecao(projeto) {
     try {
       // Executar coleção no Postman
       const summary = await executarColecao(collection);
       // Verificar os erros retornados da execução
-      await gerarArquivoDeLog(summary)
+      await gerarArquivoDeLog(projeto, summary)
     } catch (error) {
       console.log('Ocorreu um erro:', error);
     }
 }
 
-function gerarArquivoDeLog(summary) {
+function gerarArquivoDeLog(projeto, summary) {
   if (summary.run.failures.length > 0) {
     console.log('Erros encontrados:');
     let log = 'Erros encontrados:\n';
@@ -72,6 +75,8 @@ function gerarArquivoDeLog(summary) {
   }
 }
 
-// Executar a automação
-automatizarAnalise();
+iniciarProcessamentoColecao(projeto)
 
+module.exports = {
+  iniciarProcessamentoColecao
+}

@@ -1,9 +1,11 @@
 const path = require('path');
 const { exec } = require('child_process');
-// const { automatizarAnalise } = require('./executar-collection');
+const { iniciarProcessamentoColecao } = require('./executar-collection');
 
 // Array com os diretórios dos projetos
-const projeto = require('../subdiretorios.json')["subdiretorios"][3];
+const projeto = require('../subdiretorios.json')["subdiretorios"][32];
+
+let processo;
 
 async function iniciarServidor(diretorio) {
   console.log('Iniciando servidor...');
@@ -16,7 +18,7 @@ async function iniciarServidor(diretorio) {
 
   // Retorna uma Promise que resolve quando o servidor é iniciado
   return new Promise((resolve, reject) => {
-    const processo = exec('npm run dev', { shell: true });
+    processo = exec('npm run dev', { shell: true });
 
     // Manipula a saída do processo, se necessário
     processo.stdout.on('data', (data) => {
@@ -40,15 +42,29 @@ async function iniciarServidor(diretorio) {
 }
 
 // Função principal para automatizar o processo
-async function automatizarAnalise(projeto) {
+async function iniciarAnalise(projeto) {
     console.log(`Analisando o projeto do aluno: ${projeto}`);
     let diretorioDesafio = `${projeto}/desafio-backend-modulo-02-sistema-bancario-dbe-t02`
     try {
       // Iniciar o servidor
       await iniciarServidor(diretorioDesafio);
+      
+      // Após o servidor ser iniciado, chamar a função iniciarProcessamentoColecao()
+      await iniciarProcessamentoColecao(projeto);
+
+      // Encerrar o servidor
+      encerrarServidor();
     } catch (error) {
       console.log('Ocorreu um erro:', error);
     }
 }
 
-automatizarAnalise(projeto);
+// Função para encerrar o servidor
+function encerrarServidor() {
+  if (servidorProcesso) {
+    console.log('Encerrando servidor...');
+    servidorProcesso.kill();
+  }
+}
+
+iniciarAnalise(projeto);
