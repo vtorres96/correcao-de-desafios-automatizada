@@ -75,8 +75,6 @@ function gerarArquivoDeLog(projeto, summary) {
   }
 }
 
-iniciarProcessamentoColecao(projeto)
-
 module.exports = {
   iniciarProcessamentoColecao
 }
