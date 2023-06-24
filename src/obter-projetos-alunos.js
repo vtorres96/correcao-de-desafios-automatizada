@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const axios = require('axios');
 require('dotenv').config();
+const { gerarArquivoDiretorios } = require('./obter-diretorios')
 
 const owner = 'cubos-academy';
 const repositorio = process.env.REPOSITORIO_DESAFIO;
@@ -47,7 +48,7 @@ async function processar() {
  
     execSync('mkdir Desafios-M02', { stdio: 'inherit' });
 
-    prData.forEach((item) => {
+    for (let item of prData) {
       const comandos = [
         'cd Desafios-M02',
         `mkdir ${item.title.replace(/ /g, '-')}`,
@@ -59,7 +60,9 @@ async function processar() {
       ];
 
       executarComandos(comandos);
-    });
+    }
+
+    gerarArquivoDiretorios()
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }

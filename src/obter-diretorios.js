@@ -17,11 +17,17 @@ function percorrerSubdiretorios(diretorioAtual) {
   return subdiretorios;
 }
 
-const subdiretorios = percorrerSubdiretorios(diretorio);
-const data = {
-  subdiretorios: subdiretorios
-};
+function gerarArquivoDiretorios() {
+  const subdiretorios = percorrerSubdiretorios(diretorio);
+  const data = {
+    subdiretorios: subdiretorios
+  };
+  
+  const arquivoSubdiretorios = './subdiretorios.json';
+  fs.writeFileSync(arquivoSubdiretorios, JSON.stringify(data, null, 2));
+  console.log('Nomes dos subdiretórios foram salvos em', arquivoSubdiretorios);
+}
 
-const arquivoSubdiretorios = './subdiretorios.json';
-fs.writeFileSync(arquivoSubdiretorios, JSON.stringify(data, null, 2));
-console.log('Nomes dos subdiretórios foram salvos em', arquivoSubdiretorios);
+module.exports = {
+  gerarArquivoDiretorios
+}
