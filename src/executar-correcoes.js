@@ -1,32 +1,33 @@
 const path = require('path');
 const { exec } = require('child_process');
+const killPort = require('kill-port');
 const { iniciarProcessamentoColecao } = require('./executar-collection');
 
-const projeto = require('../subdiretorios.json')["subdiretorios"][32];
-
-let processo;
+const projetos = require('../subdiretorios.json')["subdiretorios"];
+const portaServidor = 3000;
 
 async function processar(diretorio) {
-  console.log('Iniciando servidor...');
   let diretorioDesafio = `${diretorio}/desafio-backend-modulo-02-sistema-bancario-dbe-t02`
   const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios-M02', diretorioDesafio);
 
-  // Ingressa no diretório do projeto
   process.chdir(caminhoAbsoluto);
 
-  // Retorna uma Promise que resolve quando o servidor é iniciado
   return new Promise((resolve, reject) => {
-    processo = exec('npm run dev', { shell: true });
+    console.log('Iniciando servidor...')
+    let processo = exec('npm run dev', { shell: true });
     let executaProcesso = true
-    // Manipula a saída do processo, se necessário
+
     processo.stdout.on('data', async (data) => {
       console.log(data);
-      // Após o servidor ser iniciado, chamar a função iniciarProcessamentoColecao()
+      // Aguarda 5 segundos apos iniciar servidor para executar colecao 
       setTimeout(async () => {
         if (executaProcesso) {
           executaProcesso = false
           await iniciarProcessamentoColecao(diretorio);
-          process.exit();
+          console.log('derrubando porta...')
+          await killPort(portaServidor); 
+          console.log('encerrando...')
+          resolve()
         }
       }, 5000);
     });
@@ -47,7 +48,6 @@ async function processar(diretorio) {
   });
 }
 
-// Função principal para automatizar o processo
 async function iniciarAnalise(projeto) {
     console.log(`Analisando o projeto do aluno: ${projeto}`);
     try {
@@ -57,12 +57,10 @@ async function iniciarAnalise(projeto) {
     }
 }
 
-// Função para encerrar o servidor
-function encerrarServidor() {
-  if (processo) {
-    console.log('Encerrando servidor...');
-    processo.kill();
+async function loopAnaliseProjetos(projetos) {
+  for (let projeto of projetos) {
+    await iniciarAnalise(projeto);
   }
 }
 
-iniciarAnalise(projeto);
+loopAnaliseProjetos(projetos);
