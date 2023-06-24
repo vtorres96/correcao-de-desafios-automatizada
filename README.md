@@ -1,4 +1,4 @@
-# correcao-automatizada-modulo-02-sistema-bancario
+# correcao-de-desafios-automatizada
 
 Esse projeto tem como propósito automatizar o processo de correção dos desafios de backend do módulo 02. De maneira que visa automatizar as etapas abaixo:
 
