@@ -1,12 +1,13 @@
 # correcao-automatizada-modulo-02-sistema-bancario
 
-Esse projeto tem propósito automatizar o processo de correção dos desafios de backend do módulo 02. De maneira que visa automatizar as etapas abaixo:
+Esse projeto tem como propósito automatizar o processo de correção dos desafios de backend do módulo 02. De maneira que visa automatizar as etapas abaixo:
 
 - Clonar o repositório do aluno no GitHub
 - Ingressar no diretório clonado
 - Instalar as dependências
 - Iniciar o servidor
 - Executar a coleção para analisar os endpoints
+- Gerar um arquivo de log retornando quais foram os erros obtidos ao executar a coleção
 
 ## Passo 1
 
@@ -31,31 +32,15 @@ Para concluir esse passo de uma maneira eficiente temos o script `obter-projetos
 Por fim, executar o script `obter-projetos-alunos.js`.
 
 ```
-node obter-projetos-alunos.js
+node src/obter-projetos-alunos.js
 ```
 
 ## Passo 2
 
-Registrar os diretórios contendo o nome dos alunos em um arquivo JSON para que no momento da execução do script de teste automatizado, não ocorra falha na execução por erro de nomenclatura de diretório.
+Efetuar a correção dos projetos aplicando os testes da coleção.
 
-Para isso temos o script `obter-diretorios.js`, que criará um arquivo entitulado `subdiretorios.json` dentro do diretório `correcao-automatizada-modulo-02-sistema-bancario`, contendo todos sub-diretórios que no caso serão os diretórios com os nomes dos alunos.
-
-```
-node obter-diretorios.js
-```
-
-## Passo 3 (melhorar processo para executar em massa, atualmente só executa de 1 em 1 manualmente)
-
-Executar o script `iniciar-servidor.js` para iniciar o servidor
+Para essa etapa também temos um script preparado para lidar com as correções, portanto, basta executar o script `executar-correcoes.js` para iniciar o processo automatizado de correção
 
 ```
-node correcao-automatizada-modulo-02-sistema-bancario/iniciar-servidor.js
-```
-
-## Passo 4
-
-Após iniciar o servidor basta abrir outro terminal executar o script `executar-collection.js` para executar a coleção de testes automatizados e depois analisar o arquivo `log.txt` que será gerado em cada projeto para cada aluno.
-
-```
-node correcao-automatizada-modulo-02-sistema-bancario/executar-collection.js
+node src/iniciar-correcoes.js
 ```
