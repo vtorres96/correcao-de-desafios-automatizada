@@ -1471,6 +1471,48 @@
 							"response": []
 						},
 						{
+							"name": "Sacar saldo informando valor acima do saldo em conta (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar valor acima do saldo em conta, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero_conta\": \"2\",\n    \"valor\": 9999,\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/sacar",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"sacar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Sacar saldo sem informar número de conta (Deve retornar erro)",
 							"event": [
 								{
@@ -1696,6 +1738,48 @@
 										"exec": [
 											"pm.test(\"Ao informar número de conta de origem e destino existentes, senha correta e valor, deve retornar status code 200\", () => {",
 											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 200,\n\t\"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transacoes/transferir",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transacoes",
+										"transferir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transferir valor informando valor acima do saldo em conta (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Ao informar valor acima do saldo em conta, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
 											"})"
 										],
 										"type": "text/javascript"

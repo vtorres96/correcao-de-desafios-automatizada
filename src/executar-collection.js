@@ -1,8 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const newman = require('newman');
+require('dotenv').config();
 
-const collection = require('./desafio-m02-collection.json');
+const collection = require('./collections/desafio-m02-collection.json');
 
 function executarCollection(collection) {
   console.log('Iniciando execução da coleção...');
