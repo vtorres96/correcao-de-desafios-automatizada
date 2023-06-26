@@ -1791,7 +1791,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 200,\n\t\"senha\": \"test123@\"\n}",
+									"raw": "{\n\t\"numero_conta_origem\": \"2\",\n\t\"numero_conta_destino\": \"1\",\n\t\"valor\": 9999,\n\t\"senha\": \"test123@\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
