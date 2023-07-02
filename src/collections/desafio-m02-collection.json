@@ -2086,11 +2086,13 @@
 									"    pm.response.to.be.withBody;",
 									"    pm.response.to.be.json;",
 									"",
-									"    // verificando propriedades retornadas no corpo da requisicao",
-									"    pm.response.json().hasOwnProperty(\"depositos\")",
-									"    pm.response.json().hasOwnProperty(\"saques\")",
-									"    pm.response.json().hasOwnProperty(\"transferenciasEnviadas\")",
-									"    pm.response.json().hasOwnProperty(\"transferenciasRecebidas\")",
+									"    const responseBody = pm.response.json();",
+									"",
+									"    // Verifica se as propriedades estão presentes no objeto JSON",
+									"    pm.expect(responseBody).to.have.property(\"depositos\");",
+									"    pm.expect(responseBody).to.have.property(\"saques\");",
+									"    pm.expect(responseBody).to.have.property(\"transferenciasEnviadas\");",
+									"    pm.expect(responseBody).to.have.property(\"transferenciasRecebidas\");",
 									"})"
 								],
 								"type": "text/javascript"
