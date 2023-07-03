@@ -55,7 +55,9 @@ function gerarArquivoDeLog(projeto, summary) {
 
     escreverLog(projeto, log);
   } else {
-    console.log('Nenhum erro encontrado.');
+    let mensagem = 'Nenhum erro encontrado. Portanto, resta analisar pontos de melhoria para sugerir e parabenizar o aluno'
+    escreverLog(projeto, mensagem);
+    console.log(mensagem);
   }
 }
 
