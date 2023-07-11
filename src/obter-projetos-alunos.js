@@ -49,6 +49,7 @@ async function processar(repositorio) {
 
     if (!diretorio) {
       console.log('URL do desafio informada está em um formato inválido');
+      return;
     }
 
     let prData = await obterPullRequests();
