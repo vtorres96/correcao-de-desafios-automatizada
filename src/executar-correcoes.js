@@ -4,11 +4,20 @@ const killPort = require('kill-port');
 const { iniciarProcessamentoColecao } = require('./executar-collection');
 
 const projetos = require('../subdiretorios.json')["subdiretorios"];
-const portaServidor = 3000;
+const args = process.argv;
+const repositorio = args[2];
 
-async function processar(diretorio) {
-  let diretorioDesafio = `${diretorio}/desafio-backend-modulo-02-sistema-bancario-dbe-t02`
-  const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios-M02', diretorioDesafio);
+async function processar(diretorio, repositorio) {
+  const portaServidor = 3000;
+  const diretorioDesafios = gerarNomenclaturaDiretorio(repositorio);
+  
+  if (!diretorioDesafios) {
+    console.log('URL do desafio informada está em um formato inválido');
+    return;
+  }
+
+  let diretorioDesafioAluno = `${diretorio}/${repositorio}`
+  const caminhoAbsoluto = path.resolve(__dirname, '..', `${diretorioDesafios}`, diretorioDesafioAluno);
 
   process.chdir(caminhoAbsoluto);
 
@@ -23,7 +32,7 @@ async function processar(diretorio) {
       setTimeout(async () => {
         if (executaProcesso) {
           executaProcesso = false
-          await iniciarProcessamentoColecao(diretorio);
+          await iniciarProcessamentoColecao(`${diretorioDesafios}/${diretorio}`);
           console.log('derrubando porta...')
           await killPort(portaServidor); 
           console.log('encerrando...')
@@ -48,19 +57,34 @@ async function processar(diretorio) {
   });
 }
 
-async function iniciarAnalise(projeto) {
+async function iniciarAnalise(projeto, repositorio) {
     console.log(`Analisando o projeto do aluno: ${projeto}`);
     try {
-      await processar(projeto);
+      await processar(projeto, repositorio);
     } catch (error) {
       console.log('Ocorreu um erro:', error);
     }
 }
 
-async function loopAnaliseProjetos(projetos) {
+async function loopAnaliseProjetos(projetos, repositorio) {
   for (let projeto of projetos) {
-    await iniciarAnalise(projeto);
+    await iniciarAnalise(projeto, repositorio);
   }
 }
 
-loopAnaliseProjetos(projetos);
+function gerarNomenclaturaDiretorio(urlDesafio) {
+  const regex = /desafio-backend-modulo-(\d+)-sistema-(\w+)(?:-(\w+))?(?:-(\w+))?(?:-(t\d+))?/;
+  const matches = urlDesafio.match(regex);
+
+  if (matches && matches.length >= 5) {
+    const modulo = matches[1];
+    const turma = `${matches[3]}-${matches[4]}`.toUpperCase();
+
+    const stringFinal = `Desafios-M${modulo}-${turma}`;
+    return stringFinal;
+  }
+
+  return null;
+}
+
+loopAnaliseProjetos(projetos, repositorio);

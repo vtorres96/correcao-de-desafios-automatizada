@@ -28,7 +28,7 @@ function executarCollection(collection) {
 }
 
 function escreverLog(diretorio, log) {
-  const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios-M02', diretorio);
+  const caminhoAbsoluto = path.resolve(__dirname, '..', diretorio);
   const logFilePath = `${caminhoAbsoluto}/log.txt`;
 
   fs.appendFileSync(logFilePath, log);
@@ -37,7 +37,7 @@ function escreverLog(diretorio, log) {
 async function iniciarProcessamentoColecao(projeto) {
     try {
       const summary = await executarCollection(collection);
-      await gerarArquivoDeLog(projeto, summary)
+      await gerarArquivoDeLog(projeto, summary);
     } catch (error) {
       console.log('Ocorreu um erro:', error);
     }
