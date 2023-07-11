@@ -3,9 +3,10 @@ const axios = require('axios');
 require('dotenv').config();
 const { gerarArquivoDiretorios } = require('./obter-diretorios')
 
+const args = process.argv;
 const owner = 'cubos-academy';
-const repositorio = process.env.REPOSITORIO_DESAFIO;
 const accessToken = process.env.ACCESS_TOKEN_GITHUB;
+const repositorio = args[2];
 
 function executarComandos(comandos) {
   try {
@@ -42,15 +43,20 @@ async function obterPullRequests() {
   return prData;
 }
 
-async function processar() {
+async function processar(repositorio) {
   try {
+    const diretorio = gerarNomenclaturaDiretorio(repositorio);
+
+    if (!diretorio) {
+      console.log('URL do desafio informada está em um formato inválido');
+    }
+
     let prData = await obterPullRequests();
- 
-    execSync('mkdir Desafios-M02', { stdio: 'inherit' });
+    execSync(`mkdir ${diretorio}`, { stdio: 'inherit' });
 
     for (let item of prData) {
       const comandos = [
-        'cd Desafios-M02',
+        `cd ${diretorio}`,
         `mkdir ${item.title.replace(/ /g, '-')}`,
         `cd ${item.title.replace(/ /g, '-')}`,
         `git clone git@github.com:${item.creator}/${repositorio}.git`,
@@ -62,7 +68,7 @@ async function processar() {
       executarComandos(comandos);
     }
 
-    gerarArquivoDiretorios()
+    gerarArquivoDiretorios(`./${diretorio}`)
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }
@@ -88,4 +94,19 @@ function analisarLinkProximaPagina(linkCabecalho) {
   return null;
 }
 
-processar();
+function gerarNomenclaturaDiretorio(urlDesafio) {
+  const regex = /desafio-backend-modulo-(\d+)-sistema-(\w+)(?:-(\w+))?(?:-(\w+))?(?:-(t\d+))?/;
+  const matches = urlDesafio.match(regex);
+
+  if (matches && matches.length >= 5) {
+    const modulo = matches[1];
+    const turma = `${matches[3]}-${matches[4]}`.toUpperCase();
+
+    const stringFinal = `Desafios-M${modulo}-${turma}`;
+    return stringFinal;
+  }
+
+  return null;
+}
+
+processar(repositorio);

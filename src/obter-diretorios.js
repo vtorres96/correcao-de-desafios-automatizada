@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const diretorio = './Desafios-M02';
-
 function percorrerSubdiretorios(diretorioAtual) {
   const itens = fs.readdirSync(diretorioAtual);
   const subdiretorios = [];
@@ -17,7 +15,7 @@ function percorrerSubdiretorios(diretorioAtual) {
   return subdiretorios;
 }
 
-function gerarArquivoDiretorios() {
+function gerarArquivoDiretorios(diretorio) {
   const subdiretorios = percorrerSubdiretorios(diretorio);
   const data = {
     subdiretorios: subdiretorios
