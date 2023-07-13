@@ -17,7 +17,7 @@ async function processar(diretorio, repositorio) {
   }
 
   let diretorioDesafioAluno = `${diretorio}/${repositorio}`
-  const caminhoAbsoluto = path.resolve(__dirname, '..', `${diretorioDesafios}`, diretorioDesafioAluno);
+  const caminhoAbsoluto = path.resolve(__dirname, '..', 'Desafios', `${diretorioDesafios}`, diretorioDesafioAluno);
 
   process.chdir(caminhoAbsoluto);
 
@@ -32,13 +32,13 @@ async function processar(diretorio, repositorio) {
       setTimeout(async () => {
         if (executaProcesso) {
           executaProcesso = false
-          await iniciarProcessamentoColecao(`${diretorioDesafios}/${diretorio}`);
+          await iniciarProcessamentoColecao(`Desafios/${diretorioDesafios}/${diretorio}`);
           console.log('derrubando porta...')
           await killPort(portaServidor); 
           console.log('encerrando...')
           resolve()
         }
-      }, 5000);
+      }, 4000);
     });
 
     processo.stderr.on('data', (data) => {
