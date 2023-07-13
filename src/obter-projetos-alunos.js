@@ -53,23 +53,23 @@ async function processar(repositorio) {
     }
 
     let prData = await obterPullRequests();
-    execSync(`mkdir ${diretorio}`, { stdio: 'inherit' });
+    execSync(`mkdir Desafios && cd Desafios && mkdir ${diretorio}`, { stdio: 'inherit' });
 
     for (let item of prData) {
       const comandos = [
-        `cd ${diretorio}`,
+        `cd Desafios/${diretorio}`,
         `mkdir ${item.title.replace(/ /g, '-')}`,
         `cd ${item.title.replace(/ /g, '-')}`,
         `git clone git@github.com:${item.creator}/${repositorio}.git`,
         `cd ${repositorio}`,
         'npm install',
-        'cd ../../'
+        'cd ../../../'
       ];
 
       executarComandos(comandos);
     }
 
-    gerarArquivoDiretorios(`./${diretorio}`)
+    gerarArquivoDiretorios(`./Desafios/${diretorio}`)
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }
