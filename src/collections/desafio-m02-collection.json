@@ -45,10 +45,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/contas",
+											"raw": "http://localhost:3000/contas",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas"
 											]
@@ -86,10 +88,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/contas",
+											"raw": "http://localhost:3000/contas",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas"
 											]
@@ -127,10 +131,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/contas",
+											"raw": "http://localhost:3000/contas",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas"
 											]
@@ -168,10 +174,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/contas",
+											"raw": "http://localhost:3000/contas",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas"
 											]
@@ -209,10 +217,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/contas",
+											"raw": "http://localhost:3000/contas",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas"
 											]
@@ -250,10 +260,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/contas",
+											"raw": "http://localhost:3000/contas",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas"
 											]
@@ -291,10 +303,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -332,10 +346,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -373,10 +389,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -412,10 +430,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -451,10 +471,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -490,10 +512,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -527,10 +551,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas",
+									"raw": "http://localhost:3000/contas",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									]
@@ -559,10 +585,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas?senha_banco=CubosBank123",
+									"raw": "http://localhost:3000/contas?senha_banco=CubosBank123",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									],
@@ -619,17 +647,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"raw": "http://localhost:3000/contas?senha_banco=Cubos123Bank",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									],
 									"query": [
 										{
 											"key": "senha_banco",
-											"value": "{{senha_banco}}"
+											"value": "Cubos123Bank"
 										}
 									]
 								}
@@ -676,10 +706,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas/3/usuario",
+									"raw": "http://localhost:3000/contas/3/usuario",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"3",
@@ -726,10 +758,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas/3/usuario",
+									"raw": "http://localhost:3000/contas/3/usuario",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"3",
@@ -776,10 +810,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/contas/3/usuario",
+									"raw": "http://localhost:3000/contas/3/usuario",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"3",
@@ -816,17 +852,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"raw": "http://localhost:3000/contas?senha_banco=Cubos123Bank",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									],
 									"query": [
 										{
 											"key": "senha_banco",
-											"value": "{{senha_banco}}"
+											"value": "Cubos123Bank"
 										}
 									]
 								}
@@ -869,10 +907,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/transacoes/depositar",
+											"raw": "http://localhost:3000/transacoes/depositar",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"transacoes",
 												"depositar"
@@ -902,10 +942,12 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/contas/4",
+											"raw": "http://localhost:3000/contas/4",
+											"protocol": "http",
 											"host": [
-												"{{baseUrl}}"
+												"localhost"
 											],
+											"port": "3000",
 											"path": [
 												"contas",
 												"4"
@@ -935,10 +977,12 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas/3",
+									"raw": "http://localhost:3000/contas/3",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"3"
@@ -968,10 +1012,12 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas/3",
+									"raw": "http://localhost:3000/contas/3",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"3"
@@ -1018,17 +1064,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"raw": "http://localhost:3000/contas?senha_banco=Cubos123Bank",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									],
 									"query": [
 										{
 											"key": "senha_banco",
-											"value": "{{senha_banco}}"
+											"value": "Cubos123Bank"
 										}
 									]
 								}
@@ -1064,10 +1112,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@",
+							"raw": "http://localhost:3000/contas/saldo?numero_conta=2&senha=test123@",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"saldo"
@@ -1109,10 +1159,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@errada",
+							"raw": "http://localhost:3000/contas/saldo?numero_conta=2&senha=test123@errada",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"saldo"
@@ -1152,10 +1204,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/saldo?numero_conta=10&senha=test123@errada",
+							"raw": "http://localhost:3000/contas/saldo?numero_conta=10&senha=test123@errada",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"saldo"
@@ -1195,10 +1249,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/saldo",
+							"raw": "http://localhost:3000/contas/saldo",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"saldo"
@@ -1243,10 +1299,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/depositar",
+									"raw": "http://localhost:3000/transacoes/depositar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"depositar"
@@ -1285,10 +1343,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/depositar",
+									"raw": "http://localhost:3000/transacoes/depositar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"depositar"
@@ -1327,10 +1387,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/depositar",
+									"raw": "http://localhost:3000/transacoes/depositar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"depositar"
@@ -1369,10 +1431,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/depositar",
+									"raw": "http://localhost:3000/transacoes/depositar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"depositar"
@@ -1403,10 +1467,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@",
+									"raw": "http://localhost:3000/contas/saldo?numero_conta=2&senha=test123@",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"saldo"
@@ -1458,10 +1524,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/sacar",
+									"raw": "http://localhost:3000/transacoes/sacar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"sacar"
@@ -1500,10 +1568,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/sacar",
+									"raw": "http://localhost:3000/transacoes/sacar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"sacar"
@@ -1542,10 +1612,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/sacar",
+									"raw": "http://localhost:3000/transacoes/sacar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"sacar"
@@ -1584,10 +1656,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/sacar",
+									"raw": "http://localhost:3000/transacoes/sacar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"sacar"
@@ -1626,10 +1700,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/sacar",
+									"raw": "http://localhost:3000/transacoes/sacar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"sacar"
@@ -1668,10 +1744,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/sacar",
+									"raw": "http://localhost:3000/transacoes/sacar",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"sacar"
@@ -1702,10 +1780,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas/saldo?numero_conta=2&senha=test123@",
+									"raw": "http://localhost:3000/contas/saldo?numero_conta=2&senha=test123@",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas",
 										"saldo"
@@ -1757,10 +1837,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -1799,10 +1881,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -1841,10 +1925,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -1883,10 +1969,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -1925,10 +2013,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -1967,10 +2057,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -2009,10 +2101,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/transacoes/transferir",
+									"raw": "http://localhost:3000/transacoes/transferir",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"transacoes",
 										"transferir"
@@ -2050,17 +2144,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/contas?senha_banco={{senha_banco}}",
+									"raw": "http://localhost:3000/contas?senha_banco=Cubos123Bank",
+									"protocol": "http",
 									"host": [
-										"{{baseUrl}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
 										"contas"
 									],
 									"query": [
 										{
 											"key": "senha_banco",
-											"value": "{{senha_banco}}"
+											"value": "Cubos123Bank"
 										}
 									]
 								}
@@ -2103,10 +2199,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/extrato?numero_conta=2&senha=test123@",
+							"raw": "http://localhost:3000/contas/extrato?numero_conta=2&senha=test123@",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"extrato"
@@ -2146,10 +2244,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/extrato",
+							"raw": "http://localhost:3000/contas/extrato",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"extrato"
@@ -2179,10 +2279,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/extrato?numero_conta=10&senha=test123@",
+							"raw": "http://localhost:3000/contas/extrato?numero_conta=10&senha=test123@",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"extrato"
@@ -2222,10 +2324,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/contas/extrato?numero_conta=2&senha=test123invalid",
+							"raw": "http://localhost:3000/contas/extrato?numero_conta=2&senha=test123invalid",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"contas",
 								"extrato"
