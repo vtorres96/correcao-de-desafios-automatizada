@@ -31,8 +31,8 @@ node src/obter-projetos-alunos.js desafio-backend-modulo-02-sistema-bancario-dbe
 
 Efetuar a correção dos projetos aplicando os testes da coleção.
 
-Para essa etapa também temos um script preparado para lidar com as correções, portanto, basta executar o script `executar-correcoes.js` e passar como parâmetro o repositório do desafio em questão, assim como no script anterior, portanto, para iniciar o processo automatizado de correção, basta executar o script conforme ilustrado abaixo:
+Para essa etapa também temos um script preparado para lidar com as correções, portanto, basta executar o script `executar-correcoes.js` e passar como parâmetro o repositório do desafio em questão, juntamente com qual collection de testes quer executar, se a do desafio principal ou do alternativo, portanto, para iniciar o processo automatizado de correção, basta executar o script conforme ilustrado abaixo:
 
 ```
-node src/iniciar-correcoes.js desafio-backend-modulo-02-sistema-bancario-dbe-t02
+node src/executar-correcoes.js desafio-backend-modulo-02-sistema-bancario-dbe-t02 m02
 ```
