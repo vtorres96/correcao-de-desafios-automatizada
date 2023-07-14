@@ -31,7 +31,7 @@ function escreverLog(diretorio, log) {
   const caminhoAbsoluto = path.resolve(__dirname, '..', diretorio);
   const logFilePath = `${caminhoAbsoluto}/log.txt`;
 
-  fs.appendFileSync(logFilePath, log);
+  fs.writeFileSync(logFilePath, log);
 }
 
 async function iniciarProcessamentoColecao(projeto) {

@@ -1,7 +1,8 @@
 const { execSync } = require('child_process');
 const axios = require('axios');
 require('dotenv').config();
-const { gerarArquivoDiretorios } = require('./obter-diretorios')
+const { gerarNomenclaturaDiretorio } = require('./gerar-nomenclatura-diretorio');
+const { gerarArquivoDiretorios } = require('./obter-diretorios');
 
 const args = process.argv;
 const owner = 'cubos-academy';
@@ -90,21 +91,6 @@ function analisarLinkProximaPagina(linkCabecalho) {
       const caminhoUrl = urlParametros.get('page');
       return { url: urlProximaPagina, page: parseInt(caminhoUrl, 10) };
     }
-  }
-
-  return null;
-}
-
-function gerarNomenclaturaDiretorio(urlDesafio) {
-  const regex = /desafio-backend-modulo-(\d+)-sistema-(\w+)(?:-(\w+))?(?:-(\w+))?(?:-(t\d+))?/;
-  const matches = urlDesafio.match(regex);
-
-  if (matches && matches.length >= 5) {
-    const modulo = matches[1];
-    const turma = `${matches[3]}-${matches[4]}`.toUpperCase();
-
-    const stringFinal = `Desafios-M${modulo}-${turma}`;
-    return stringFinal;
   }
 
   return null;

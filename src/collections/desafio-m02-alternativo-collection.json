@@ -1,0 +1,1259 @@
+{
+	"info": {
+		"_postman_id": "f18317dd-9298-4d11-8036-0f41db0e7928",
+		"name": "Resolução Desafio Backend M02 Alternativo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8998049"
+	},
+	"item": [
+		{
+			"name": "Criação de Consulta",
+			"item": [
+				{
+					"name": "Criar consulta sem informações obrigatórias (Deve retonar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Sem o corpo da requisição, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoConsulta\": \"GERAL\",\n    \"valorConsulta\": 5000,\n    \"paciente\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar consulta com uma especialidade que não existe (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Enviando um tipo de consulta que não existe, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoConsulta\": \"CARDIOLOGISTA\",\n    \"valorConsulta\": 5000,\n    \"paciente\": {\n        \"nome\": \"John Doe2\",\n        \"cpf\": \"551323920553\",\n        \"dataNascimento\": \"2022-02-02\",\n        \"celular\": \"119999977793\",\n        \"email\": \"john@doe23.com\",\n        \"senha\": \"12345\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar uma consulta (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando todos os dados nescessarios forem enviados, a api deve retornar o status code 201\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoConsulta\": \"GERAL\",\n    \"valorConsulta\": 5000,\n    \"paciente\": {\n        \"nome\": \"John Doe2\",\n        \"cpf\": \"551323920553\",\n        \"dataNascimento\": \"2022-02-02\",\n        \"celular\": \"119999977793\",\n        \"email\": \"john@doe23.com\",\n        \"senha\": \"12345\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma consulta com um paciente que já possui uma em aberto (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Tentando criar uma consulta que já esta em aberto, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoConsulta\": \"GERAL\",\n    \"valorConsulta\": 5000,\n    \"paciente\": {\n        \"nome\": \"John Doe2\",\n        \"cpf\": \"551323920553\",\n        \"dataNascimento\": \"2022-02-02\",\n        \"celular\": \"119999977793\",\n        \"email\": \"john@doe23.com\",\n        \"senha\": \"12345\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar outra consulta com um paciente e especialidade diferentes (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando todos os dados nescessarios forem enviados, a api deve retornar o status code 201\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoConsulta\": \"ODONTOLOGIA\",\n    \"valorConsulta\": 5000,\n    \"paciente\": {\n        \"nome\": \"John Doe\",\n        \"cpf\": \"551323920554\",\n        \"dataNascimento\": \"2022-04-04\",\n        \"celular\": \"119999977794\",\n        \"email\": \"john@doe.com\",\n        \"senha\": \"123456\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exibição de Consultas",
+			"item": [
+				{
+					"name": "Listar consultas sem os dados do consultório (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando os parametros de acesso não forem enviados, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consultas",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consultas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar consultas com login e senha errados (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando os parametros de acesso não forem validos, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consultas?cnes_consultorio=1000&senha_consultorio=CubosFintech@2022",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consultas"
+							],
+							"query": [
+								{
+									"key": "cnes_consultorio",
+									"value": "1000"
+								},
+								{
+									"key": "senha_consultorio",
+									"value": "CubosFintech@2022"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar consultas (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a request ser executada, checar todos os dados retornados\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"",
+									"    const responseJson = pm.response.json()",
+									"",
+									"    console.log(responseJson)",
+									"",
+									"    // Até o momento foram criados apenas duas consultas",
+									"    pm.expect(responseJson).to.have.length(2)",
+									"",
+									"    pm.expect(responseJson[0].tipoConsulta).to.eql(\"GERAL\")",
+									"    pm.expect(responseJson[0].paciente.nome).to.eql(\"John Doe2\")",
+									"    pm.expect(responseJson[0].paciente.cpf).to.eql(\"551323920553\")",
+									"    pm.expect(responseJson[0].paciente.email).to.eql(\"john@doe23.com\")",
+									"    pm.expect(responseJson[0].paciente.senha).to.eql(\"12345\")",
+									"",
+									"    pm.expect(responseJson[1].tipoConsulta).to.eql(\"ODONTOLOGIA\")",
+									"    pm.expect(responseJson[1].paciente.nome).to.eql(\"John Doe\")",
+									"    pm.expect(responseJson[1].paciente.cpf).to.eql(\"551323920554\")",
+									"    pm.expect(responseJson[1].paciente.email).to.eql(\"john@doe.com\")",
+									"    pm.expect(responseJson[1].paciente.senha).to.eql(\"123456\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consultas?cnes_consultorio=1001&senha_consultorio=CubosHealth@2022",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consultas"
+							],
+							"query": [
+								{
+									"key": "cnes_consultorio",
+									"value": "1001"
+								},
+								{
+									"key": "senha_consultorio",
+									"value": "CubosHealth@2022"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Finalização de Consultas",
+			"item": [
+				{
+					"name": "FInalizar uma consulta sem o identificador e o texto médico (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Sem o corpo da requisição, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/finalizar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"finalizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInalizar uma consulta que não existe (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Não consegue criar uma consulta pois a mesma não existe, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identificadorConsulta\": 1000,\n    \"textoMedico\": \"XPTO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/finalizar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"finalizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInalizar uma consulta (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando todos os dados nescessarios forem enviados, a api deve retornar o status code 201\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identificadorConsulta\": 1,\n    \"textoMedico\": \"XPTO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/finalizar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"finalizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInalizar uma consulta que já foi finalizada (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Não consegue criar uma consulta pois a mesma não existe, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identificadorConsulta\": 1,\n    \"textoMedico\": \"XPTO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/finalizar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"finalizar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exibição de Consultas Finalizadas",
+			"item": [
+				{
+					"name": "Listar consultas finalizadas sem o identificador do Médico (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando os parametros de acesso não forem enviados, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consultas/medico",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consultas",
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar consultas finalizadas de um Médico que não existe (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando o Médico não existe, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consultas/medico?identificador_medico=5",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consultas",
+								"medico"
+							],
+							"query": [
+								{
+									"key": "identificador_medico",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar consultas finalizadas de um Médico (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a request ser executada, checar todos os dados retornados\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"",
+									"    const responseJson = pm.response.json()",
+									"",
+									"    console.log(responseJson)",
+									"",
+									"    // Até o momento foram criados apenas duas consultas",
+									"    pm.expect(responseJson).to.have.length(1)",
+									"",
+									"    pm.expect(responseJson[0].tipoConsulta).to.eql(\"GERAL\")",
+									"    pm.expect(responseJson[0].identificadorMedico).to.eql(1)",
+									"    pm.expect(responseJson[0].finalizada).to.eql(true)",
+									"    pm.expect(responseJson[0].identificadorLaudo).to.eql(1)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consultas/medico?identificador_medico=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consultas",
+								"medico"
+							],
+							"query": [
+								{
+									"key": "identificador_medico",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exibição de Laudos",
+			"item": [
+				{
+					"name": "Listar laudo sem identificador da consulta e senha (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando os parametros de acesso não forem enviados, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/laudo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"laudo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar laudo de uma consulta que não existe (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a consulta não existir, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/laudo?identificador_consulta=1000&senha=12345",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"laudo"
+							],
+							"query": [
+								{
+									"key": "identificador_consulta",
+									"value": "1000"
+								},
+								{
+									"key": "senha",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar laudo de uma consulta em que a senha do paciente esta incorreta (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a senha do paciente estiver incorreta, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/laudo?identificador_consulta=1&senha=12347",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"laudo"
+							],
+							"query": [
+								{
+									"key": "identificador_consulta",
+									"value": "1"
+								},
+								{
+									"key": "senha",
+									"value": "12347"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar laudo de uma consulta (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a request ser executada, checar todos os dados retornados\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"",
+									"    const responseJson = pm.response.json()",
+									"",
+									"    console.log(responseJson)",
+									"",
+									"    pm.expect(responseJson.identificadorMedico).to.eql(1)",
+									"    pm.expect(responseJson.textoMedico).to.eql(\"XPTO\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/laudo?identificador_consulta=1&senha=12345",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								"laudo"
+							],
+							"query": [
+								{
+									"key": "identificador_consulta",
+									"value": "1"
+								},
+								{
+									"key": "senha",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atualização dos Dados do Paciente",
+			"item": [
+				{
+					"name": "Atualizar dados do paciente sem informações obrigatórias  (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Sem o corpo da requisição, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta/paciente",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta",
+								"paciente"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar dados do paciente de uma consulta inexistente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando uma consulta não existir, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"John Da Nicka\",\n  \"cpf\": \"55132392055444\",\n  \"dataNascimento\": \"2022-02-02\",\n  \"celular\": \"119999977753\",\n  \"email\": \"john@doe244.com\",\n  \"senha\": \"12345544\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta/paciente",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta",
+								"paciente"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar dados do paciente com um email existente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando o email ja existir, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"John Da Nicka\",\n  \"cpf\": \"55132392055444\",\n  \"dataNascimento\": \"2022-02-02\",\n  \"celular\": \"119999977753\",\n  \"email\": \"john@doe23.com\",\n  \"senha\": \"12345544\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta/paciente",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta",
+								"paciente"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar dados do paciente com um cpf existente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando o cpf ja existir, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"John Da Nicka\",\n  \"cpf\": \"551323920553\",\n  \"dataNascimento\": \"2022-02-02\",\n  \"celular\": \"119999977753\",\n  \"email\": \"john@doe66.com\",\n  \"senha\": \"12345544\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta/paciente",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta",
+								"paciente"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar dados do paciente de uma consulta finalizada (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a consulta já estiver finalizada, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"John Da Nicka\",\n  \"cpf\": \"551323920553\",\n  \"dataNascimento\": \"2022-02-02\",\n  \"celular\": \"119999977753\",\n  \"email\": \"john@doe66.com\",\n  \"senha\": \"12345544\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta/paciente",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta",
+								"paciente"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar dados do paciente (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a request ser executada, o retorno tem deve ser um status de sucesso\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"John Da Nicka\",\n  \"cpf\": \"55132392055777\",\n  \"dataNascimento\": \"2022-02-02\",\n  \"celular\": \"119999977753\",\n  \"email\": \"john@doe99.com\",\n  \"senha\": \"12345544\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta/paciente",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta",
+								"paciente"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exclusão de Consultas",
+			"item": [
+				{
+					"name": "Cancelar consulta inexistente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a consulta não existir, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar consulta já finalizada (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a consulta já estiver finalizada, a api deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar consulta (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Quando a request ser executada, checar os status\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/consulta/:identificadorConsulta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"consulta",
+								":identificadorConsulta"
+							],
+							"variable": [
+								{
+									"key": "identificadorConsulta",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
