@@ -1,11 +1,12 @@
-## Guia detalhado de apoio para correção dos feedbacks
+## Guia detalhado de apoio para correção dos desafios do módulo 02 - sistema bancário
 
 Este guia tem o propósito de auxiliar o monitor que estiver efetuando a correção, de maneira, que
 servirá para mensurar quais critérios devemos analisar caso o projeto analisado tenha sido aprovado em grande parte dos testes automatizados, portanto, vamos aos critérios detalhados em cada enpoint.
 
 ## Listagem de contas bancárias
 
-- Verificar se propriedade `senha_banco` foi informada
+- Verificar se o parâmetro de query `senha_banco` foi informado
+- Verificar se o parâmetro de query `senha_banco` informado é válido
 
 ## Criar conta bancária
 
@@ -15,7 +16,7 @@ servirá para mensurar quais critérios devemos analisar caso o projeto analisad
 
 ## Atualizar os dados do usuário da conta bancária
 
-- Verificar se parâmetro de query `numeroConta` foi informado
+- Verificar se parâmetro de rota `numeroConta` foi informado
 - Analisar se aplicou validação para quando a conta não for encontrada
 - Verificar se parâmetros no corpo da requisição `nome, cpf, data_nascimento, telefone,  email, senha,` foram informadas
 - Verificar se CPF informado já não pertence a outra conta
@@ -23,7 +24,7 @@ servirá para mensurar quais critérios devemos analisar caso o projeto analisad
 
 ## Excluir uma conta bancária
 
-- Verificar se parâmetro de query `numeroConta` foi informado
+- Verificar se parâmetro de rota `numeroConta` foi informado
 - Analisar se aplicou validação para quando a conta não for encontrada
 - Verificar se o saldo da conta está com valor 0 atribuído
 
