@@ -1,5 +1,5 @@
 function gerarNomenclaturaDiretorio(urlDesafio) {
-    const regex = /desafio-backend-modulo-(\d+)-sistema-(\w+)(?:-(\w+))?(?:-(\w+))?(?:-(t\d+))?/;
+    const regex = retornarRegEx(urlDesafio);
     const matches = urlDesafio.match(regex);
   
     if (matches && matches.length >= 5) {
@@ -13,6 +13,16 @@ function gerarNomenclaturaDiretorio(urlDesafio) {
     return null;
 }
 
+function retornarRegEx(urlDesafio) {
+  let regex = "";
+  if (urlDesafio.includes("alternativo")) {
+    regex = /desafio-backend-modulo-(\d+)-alternativo(?:-(\w+))?(?:-(\w+))?(?:-(t\d+))?/;
+  } else {
+    regex = /desafio-backend-modulo-(\d+)-sistema-(\w+)(?:-(\w+))?(?:-(\w+))?(?:-(t\d+))?/;
+  }
+
+  return regex;
+}
 module.exports = {
     gerarNomenclaturaDiretorio
 }

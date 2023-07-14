@@ -1,6 +1,9 @@
 const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
+
 const { gerarNomenclaturaDiretorio } = require('./gerar-nomenclatura-diretorio');
 const { gerarArquivoDiretorios } = require('./obter-diretorios');
 
@@ -47,6 +50,7 @@ async function obterPullRequests() {
 async function processar(repositorio) {
   try {
     const diretorio = gerarNomenclaturaDiretorio(repositorio);
+    let comandoDiretorioDesafio = "";
 
     if (!diretorio) {
       console.log('URL do desafio informada está em um formato inválido');
@@ -54,7 +58,18 @@ async function processar(repositorio) {
     }
 
     let prData = await obterPullRequests();
-    execSync(`mkdir Desafios && cd Desafios && mkdir ${diretorio}`, { stdio: 'inherit' });
+    let caminhoDiretorioDesafios = path.resolve(__dirname, '..', 'Desafios');
+    if (fs.existsSync(caminhoDiretorioDesafios)) {
+      if (caminhoDiretorioDesafios.concat(`${diretorio}`)) {
+        console.log('Opss... Parece que já iniciou processo de correção para o desafio em questão relacionado a essa turma');
+        return;
+      }
+      comandoDiretorioDesafio = 'cd Desafios'
+    } else {
+      comandoDiretorioDesafio = 'mkdir Desafios && cd Desafios';
+    }
+
+    execSync(`${comandoDiretorioDesafio} && mkdir ${diretorio}`, { stdio: 'inherit' });
 
     for (let item of prData) {
       const comandos = [
