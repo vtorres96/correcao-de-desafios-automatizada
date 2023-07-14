@@ -60,8 +60,8 @@ async function processar(repositorio) {
     let prData = await obterPullRequests();
     let caminhoDiretorioDesafios = path.resolve(__dirname, '..', 'Desafios');
     if (fs.existsSync(caminhoDiretorioDesafios)) {
-      if (caminhoDiretorioDesafios.concat(`${diretorio}`)) {
-        console.log('Opss... Parece que já iniciou processo de correção para o desafio em questão relacionado a essa turma');
+      if (fs.existsSync(caminhoDiretorioDesafios.concat(`/${diretorio}`))) {
+        console.log(`Opss... Parece que já iniciou processo de correção para o desafio em questão relacionado a essa turma, verifique se a quantidade de pull requests confere com a quantidade de projetos contidos nesse diretório: ${diretorio} caso contrário apague-o e efetue o processo novamente`);
         return;
       }
       comandoDiretorioDesafio = 'cd Desafios'

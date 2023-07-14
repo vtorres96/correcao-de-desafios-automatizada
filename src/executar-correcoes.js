@@ -9,7 +9,7 @@ const projetos = require('../subdiretorios.json')["subdiretorios"];
 const args = process.argv;
 const repositorio = args[2];
 const arquivoCollection = args[3];
-const collection = require(`./collections/desafio${arquivoCollection}-collection.json`);
+const collection = require(`./collections/desafio-${arquivoCollection}-collection.json`);
 
 async function processar(diretorio, repositorio) {
   const portaServidor = 3000;
