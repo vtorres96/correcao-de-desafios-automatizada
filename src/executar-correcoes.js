@@ -2,6 +2,7 @@ const path = require('path');
 const { exec } = require('child_process');
 const killPort = require('kill-port');
 const { iniciarProcessamentoColecao } = require('./executar-collection');
+const fs = require('fs');
 
 const projetos = require('../subdiretorios.json')["subdiretorios"];
 const args = process.argv;
@@ -10,7 +11,7 @@ const repositorio = args[2];
 async function processar(diretorio, repositorio) {
   const portaServidor = 3000;
   const diretorioDesafios = gerarNomenclaturaDiretorio(repositorio);
-  
+
   if (!diretorioDesafios) {
     console.log('URL do desafio informada está em um formato inválido');
     return;
@@ -28,17 +29,23 @@ async function processar(diretorio, repositorio) {
 
     processo.stdout.on('data', async (data) => {
       console.log(data);
-      // Aguarda 5 segundos apos iniciar servidor para executar colecao 
+      // Aguarda 5 segundos após iniciar servidor para executar coleção
       setTimeout(async () => {
         if (executaProcesso) {
-          executaProcesso = false
-          await iniciarProcessamentoColecao(`Desafios/${diretorioDesafios}/${diretorio}`);
-          console.log('derrubando porta...')
-          await killPort(portaServidor); 
-          console.log('encerrando...')
-          resolve()
+          executaProcesso = false;
+          try {
+            await iniciarProcessamentoColecao(`Desafios/${diretorioDesafios}/${diretorio}`);
+            console.log('derrubando porta...')
+            await killPort(portaServidor);
+            console.log('encerrando...')
+            resolve();
+          } catch (error) {
+            console.error('Erro ao executar a coleção de testes:', error);
+            gravarLog(`Erro capturado do servidor: ${error}`);
+            resolve();
+          }
         }
-      }, 4000);
+      }, 5000);
     });
 
     processo.stderr.on('data', (data) => {
@@ -52,24 +59,37 @@ async function processar(diretorio, repositorio) {
 
     processo.on('error', (error) => {
       console.error('Erro ao iniciar o servidor:', error);
-      reject(error);
+      gravarLog(`Erro capturado ao iniciar o servidor: ${error}`);
+      resolve();
     });
   });
 }
 
 async function iniciarAnalise(projeto, repositorio) {
-    console.log(`Analisando o projeto do aluno: ${projeto}`);
-    try {
-      await processar(projeto, repositorio);
-    } catch (error) {
-      console.log('Ocorreu um erro:', error);
-    }
+  console.log(`Analisando o projeto do aluno: ${projeto}`);
+  try {
+    await processar(projeto, repositorio);
+  } catch (error) {
+    console.log('Ocorreu um erro: ', error);
+    gravarLog(`Erro capturado durante a análise do projeto ${projeto}. Erro: ${error}`);
+  }
 }
 
 async function loopAnaliseProjetos(projetos, repositorio) {
   for (let projeto of projetos) {
     await iniciarAnalise(projeto, repositorio);
   }
+}
+
+function gravarLog(mensagem) {
+  const logFilePath = path.resolve(__dirname, 'log.txt');
+  const formattedMessage = `[${new Date().toISOString()}] - ${mensagem}\n`;
+
+  fs.appendFile(logFilePath, formattedMessage, (error) => {
+    if (error) {
+      console.error('Erro ao gravar no arquivo de log: ', error);
+    }
+  });
 }
 
 function gerarNomenclaturaDiretorio(urlDesafio) {
