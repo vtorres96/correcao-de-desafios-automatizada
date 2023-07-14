@@ -3,16 +3,10 @@ const fs = require('fs');
 const newman = require('newman');
 require('dotenv').config();
 
-const collection = require('./collections/desafio-m02-collection.json');
-
 function executarCollection(collection) {
   console.log('Iniciando execução da coleção...');
   const options = {
     collection: collection,
-    environment: {
-      baseUrl: 'localhost:3000',
-      senha_banco: 'Cubos123Bank',
-    },
   };
 
   return new Promise((resolve, reject) => {
@@ -34,7 +28,7 @@ function escreverLog(diretorio, log) {
   fs.writeFileSync(logFilePath, log);
 }
 
-async function iniciarProcessamentoColecao(projeto) {
+async function iniciarProcessamentoColecao(projeto, collection) {
     try {
       const summary = await executarCollection(collection);
       await gerarArquivoDeLog(projeto, summary);

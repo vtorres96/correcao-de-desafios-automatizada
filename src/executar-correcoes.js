@@ -1,13 +1,15 @@
 const path = require('path');
+const fs = require('fs');
 const { exec } = require('child_process');
 const killPort = require('kill-port');
 const { gerarNomenclaturaDiretorio } = require('./gerar-nomenclatura-diretorio');
 const { iniciarProcessamentoColecao } = require('./executar-collection');
-const fs = require('fs');
-
 const projetos = require('../subdiretorios.json')["subdiretorios"];
+
 const args = process.argv;
 const repositorio = args[2];
+const arquivoCollection = args[3];
+const collection = require(`./collections/desafio${arquivoCollection}-collection.json`);
 
 async function processar(diretorio, repositorio) {
   const portaServidor = 3000;
@@ -35,7 +37,7 @@ async function processar(diretorio, repositorio) {
         if (executaProcesso) {
           executaProcesso = false;
           try {
-            await iniciarProcessamentoColecao(`Desafios/${diretorioDesafios}/${diretorio}`);
+            await iniciarProcessamentoColecao(`Desafios/${diretorioDesafios}/${diretorio}`, collection);
             console.log('derrubando porta...')
             await killPort(portaServidor);
             console.log('encerrando...')
