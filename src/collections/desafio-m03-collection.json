@@ -1,0 +1,1889 @@
+{
+	"info": {
+		"_postman_id": "1002e367-d01e-4498-95da-bbd6d46b2de2",
+		"name": "Resolução Desafio Backend M03 - Sistema Dindin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "8998049"
+	},
+	"item": [
+		{
+			"name": "Cadastro de Usuário",
+			"item": [
+				{
+					"name": "Verificar campos obrigatórios",
+					"item": [
+						{
+							"name": "Cadastrar Usuário - Corpo Vazio (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Usuário - Corpo vazio, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/contas"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Usuário - Corpo Inválido - Sem informar nome (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Usuário - Ao não informar nome, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"Teste@Teste.com\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/contas"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Usuário - Corpo Inválido - Sem informar e-mail (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Usuário - Ao não informar e-mail, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester1\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/contas"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Usuário - Corpo Inválido - Sem informar senha (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Usuário - Ao não informar senha, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/contas"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cadastrar Usuário - Corpo Válido (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Cadastro de Usuário - Ao informar corpo da requisição completo, deve retornar 200/201\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"})",
+									"",
+									"pm.test(\"Cadastro de Usuário - Ao informar corpo da requisição completo, retornar status code 200/201 e com corpo de resposta\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Teste\",\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/contas"
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Usuário - E-mail existente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Cadastro de Usuário - Ao informar E-mail duplicado, deve retornar uma mensagem de erro com o status code 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Tester Erro\",\n    \"email\": \"teste@teste.com\",\n    \"cpf\": \"44444444444\",\n    \"data_nascimento\": \"01/01/1970\",\n    \"telefone\": \"99999999999\",\n    \"senha\": \"test123@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/contas"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticação / Login",
+			"item": [
+				{
+					"name": "Verificar campos obrigatórios",
+					"item": [
+						{
+							"name": "Autenticação - Corpo Vazio (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Autenticação - Corpo vazio, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/login"
+							},
+							"response": []
+						},
+						{
+							"name": "Autenticação - Corpo Inválido - Sem propriedade email (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Autenticação - Corpo invalido sem propriedade email, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/login"
+							},
+							"response": []
+						},
+						{
+							"name": "Autenticação - Corpo Inválido - Sem propriedade senha (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Autenticação - Corpo invalido sem propriedade senha, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"Teste@Teste.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/login"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Autenticação - Corpo Válido - Email inexistente (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Autenticação - Corpo válido informando email inexistente, esperado receber mensagem de erro e status 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"jose.messias.junior@cubos.academy\",\n    \"senha\": \"jose_messias_junior\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Autenticação - Corpo Válido - Senha inválida/Incorreta (Deve retornar erro)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Corpo invalido enviando senha inválida/incorreta, esperado receber mensagem de erro e status 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Teste@Teste.com\",\n    \"senha\": \"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Autenticação - Corpo Válido - Token Válido (Deve retornar sucesso)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Corpo valido com dados corretos, esperado receber objeto e status 200\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Adicionando token na variavel de ambiente\", () => {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.token.length).to.greaterThan(0)",
+									"    pm.environment.set(\"token\", jsonData.token);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Teste@Teste.com\",\n    \"senha\": \"test123@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listar Usuários",
+			"item": [
+				{
+					"name": "Listar Usuários -Token Inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Listar Usuários - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuários - Token Válido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Listar Usuários - Token valido, esperado receber objeto e status 200\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/usuario"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atualizar Usuário",
+			"item": [
+				{
+					"name": "Verificar campos obrigatórios",
+					"item": [
+						{
+							"name": "Atualizar usuário - Corpo Vazio (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Usuário - Corpo vazio, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/usuario"
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar usuário - Corpo Inválido - Sem informar nome (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Usuário - Ao não informar nome, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"Teste@Teste.com\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/usuario"
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar usuário - Corpo Inválido - Sem informar e-mail (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Usuário - Ao não informar e-mail, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester1\",\n    \"senha\": \"test123@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/usuario"
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar usuário - Corpo Inválido - Sem informar senha (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Usuário - Ao não informar senha, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"Tester1\",\n    \"email\": \"Teste@Teste.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/usuario"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atualizar usuário - Corpo Válido - Token Inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Atualizar Usuário - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Jose\",\n    \"email\": \"testepostman2@email.com\",\n    \"senha\": \"654321\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar usuário - Corpo Válido - Token Válido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Atualizar Usuário - Ao atualizar o usuário, deve retornar status code 200\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+									"})",
+									"",
+									"pm.test(\"Atualizar Usuário - Atualizar variáveis de ambiente\", () => {",
+									"    pm.environment.set(\"login\", \"testepostman2@email.com\");",
+									"    pm.environment.set(\"password\", \"654321\");",
+									"    pm.environment.set(\"name\", \"Jose\");",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Jose\",\n    \"email\": \"testepostman2@email.com\",\n    \"senha\": \"654321\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/usuario"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Listar Categorias - Token Inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Listar Categorias - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/categoria"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Categorias - Token Válido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Listar Categorias - Token valido, esperado receber objeto e status 200\", () => {",
+									"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/categoria"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transacao",
+			"item": [
+				{
+					"name": "Listar Transações",
+					"item": [
+						{
+							"name": "Listar Transações - Token Inválido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Listar Transações - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Transações - Token Válido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Listar Transações - Token valido, esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cadastrar Transações",
+					"item": [
+						{
+							"name": "Verificar campos obrigatórios",
+							"item": [
+								{
+									"name": "Cadastrar Transação - Corpo Vazio (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Cadastro de Transações - Corpo vazio, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao"
+									},
+									"response": []
+								},
+								{
+									"name": "Cadastrar Transação - Corpo Inválido - Sem informar tipo (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Cadastro de Transações - Ao não informar tipo, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao"
+									},
+									"response": []
+								},
+								{
+									"name": "Cadastrar Transação - Corpo Inválido - Sem informar descrição (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Cadastro de Transações - Ao não informar descrição, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao"
+									},
+									"response": []
+								},
+								{
+									"name": "Cadastrar Transação - Corpo Inválido - Sem informar valor (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Cadastro de Transações - Ao não informar valor, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao"
+									},
+									"response": []
+								},
+								{
+									"name": "Cadastrar Transação - Corpo Inválido - Sem informar data (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Cadastro de Transações - Ao não informar data, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao"
+									},
+									"response": []
+								},
+								{
+									"name": "Cadastrar Transação - Corpo Inválido - Sem informar categoria_id (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Cadastro de Transações - Ao não informar categoria_id, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Cadastrar Transação - Corpo Válido - Token Inválido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Transações - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Transação - Corpo Válido - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Transações - , esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})",
+											"",
+											"pm.test(\"Cadastro de Transações - verificando objeto criado após criação\", () => {",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.tipo).to.equal(pm.environment.get(\"transactionType\"))",
+											"    pm.expect(jsonData.descricao).to.equal(pm.environment.get(\"transactionDescription\"))",
+											"    pm.expect(jsonData.valor).to.equal(300000)",
+											"    pm.expect(jsonData.categoria_id).to.equal(6)",
+											"})",
+											"",
+											"pm.test(\"Cadastro de Transações - Adicionando ID na variável de ambiente\", () => {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.id).to.greaterThan(0)",
+											"    pm.environment.set(\"transactionId\", jsonData.id);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Transação - Corpo Válido - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Transações - esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 200000,\n    \"data\": \"2022-03-25\",\n    \"categoria_id\": 4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Transação - Tipo Inválido - Token Válido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Transações - Ao informar tipo inválido, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"umtipoinvalido\",\n    \"descricao\": \"Salário\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Transação - Categoria_id Inválida - Token Válido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Cadastro de Transações - Ao informar categoria_id inválido, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 999\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						},
+						{
+							"name": "Detalhar Transação - Pós Cadastro - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Detalhar Transação - Pós cadastro - Token valido, esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})",
+											"",
+											"pm.test(\"Detalhar Transação - Pós cadastro\", () => {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.id).to.equal(pm.environment.get(\"transactionId\"))",
+											"    pm.expect(jsonData.tipo).to.equal(pm.environment.get(\"transactionType\"))",
+											"    pm.expect(jsonData.descricao).to.equal(pm.environment.get(\"transactionDescription\"))",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atualizar Transações",
+					"item": [
+						{
+							"name": "Verificar campos obrigatórios",
+							"item": [
+								{
+									"name": "Atualizar Transação - Corpo Vazio (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Atualizar Transação - Corpo vazio, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao/{{transactionId}}"
+									},
+									"response": []
+								},
+								{
+									"name": "Atualizar Transação - Corpo Inválido - Sem informar tipo (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Atualizar Transação - Ao não informar tipo, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao/{{transactionId}}"
+									},
+									"response": []
+								},
+								{
+									"name": "Atualizar Transação - Corpo Inválido - Sem informar descrição (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Atualizar Transação - Ao não informar descrição, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao/{{transactionId}}"
+									},
+									"response": []
+								},
+								{
+									"name": "Atualizar Transação - Corpo Inválido - Sem informar valor (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Atualizar Transação - Ao não informar valor, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao/{{transactionId}}"
+									},
+									"response": []
+								},
+								{
+									"name": "Atualizar Transação - Corpo Inválido - Sem informar data (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Atualizar Transação - Ao não informar data, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"categoria_id\": 6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao/{{transactionId}}"
+									},
+									"response": []
+								},
+								{
+									"name": "Atualizar Transação - Corpo Inválido - Sem informar categoria_id (Deve retornar erro)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Atualizar Transação - Ao não informar categoria_id, deve retornar status code 400\", () => {",
+													"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/transacao/{{transactionId}}"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Atualizar Transação - Corpo Válido - Token Inválido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Transação - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Transação - Corpo Válido - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Transação - , esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})",
+											"",
+											"pm.test(\"Atualizando variáveis do environment transactionType e transactionDescription\", () => {",
+											"    pm.environment.set(\"transactionType\", \"entrada\");",
+											"    pm.environment.set(\"transactionDescription\", \"Salário\");",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Transação - Tipo Inválido - Token Válido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Transação - Ao informar tipo inválido, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"umtipoinvalido\",\n    \"descricao\": \"Salário\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Transação - Categoria_id Inválida - Token Válido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Atualizar Transação - Ao informar categoria_id inválido, deve retornar status code 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(300).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 999\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Detalhar Transação - Pós Atualização - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Detalhar Transação - Pós atualização - Token valido, esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})",
+											"",
+											"pm.test(\"Detalhar Transação - Pós atualização - analisando ID\", () => {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.id).to.equal(pm.environment.get(\"transactionId\"))",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Transações",
+					"item": [
+						{
+							"name": "Excluir Transação - Token Inválido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Excluir Transação - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Excluir Transação - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Excluir Transação - Ao excluir a transação, deve retornar status code 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/{{transactionId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Transações - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Listar Transações - Token valido, esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})",
+											"",
+											"pm.test(\"when calling for the first time, get an empty array\", () => {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.length).to.equal(1)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Extrato",
+					"item": [
+						{
+							"name": "Extrato - Token Inválido (Deve retornar erro)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Extrato - Token invalido, esperado receber mensagem de erro e status 400\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(399).lessThan(500)",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/extrato"
+							},
+							"response": []
+						},
+						{
+							"name": "Extrato - Token Válido (Deve retornar sucesso)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Extrato - Token valido, esperado receber objeto e status 200\", () => {",
+											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300);",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"})",
+											"",
+											"pm.test(\"Extrato - Token valido - analisando corpo da resposta\", () => {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData).to.haveOwnProperty('entrada')",
+											"    pm.expect(jsonData).to.haveOwnProperty('saida')",
+											"    pm.expect(jsonData.entrada).to.gte(0)",
+											"    pm.expect(jsonData.saida).to.gte(0)",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/transacao/extrato"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Restaurar Environments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Restaurar Environments\", () => {",
+							"    pm.environment.set(\"login\", \"testepostman@email.com\");",
+							"    pm.environment.set(\"password\", \"123456\");",
+							"    pm.environment.set(\"name\", \"joao\");",
+							"    pm.environment.set(\"transactionDescription\", \"Salário\");",
+							"    pm.environment.set(\"transactionType\", \"entrada\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

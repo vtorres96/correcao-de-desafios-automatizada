@@ -1,0 +1,75 @@
+{
+	"id": "f59a07a5-7365-4e2d-8d41-28503f116dac",
+	"name": "Desafio M03",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "api",
+			"value": "https://desafio-backend-03-dindin.herokuapp.com/",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "login",
+			"value": "testepostman@email.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "123456",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wrongLogin",
+			"value": "umlogindoidoquenaoexiste",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "wrongPassword",
+			"value": "123456",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "name",
+			"value": "joao",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "transactionId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "transactionDescription",
+			"value": "Salário",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "transactionType",
+			"value": "entrada",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-09-06T01:26:12.563Z",
+	"_postman_exported_using": "Postman/10.17.6"
+}

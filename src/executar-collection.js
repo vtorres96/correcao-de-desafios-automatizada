@@ -1,14 +1,25 @@
 const path = require('path');
 const fs = require('fs');
 const newman = require('newman');
+const args = process.argv;
+
 require('dotenv').config();
 
 function executarCollection(collection) {
   console.log('Iniciando execução da coleção...');
+  let environment = null;
+  const arquivoCollection = args[3];
+
+  if (arquivoCollection == 'm03' || arquivoCollection == 'm05') {
+    environment = require(`./collections/desafio-${arquivoCollection}-environment.json`);
+  }
+
   const options = {
     collection: collection,
+    environment: environment,
   };
 
+  console.log(options)
   return new Promise((resolve, reject) => {
     newman.run(options, function (error, summary) {
       if (error) {

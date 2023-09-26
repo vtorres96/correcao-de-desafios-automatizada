@@ -79,9 +79,11 @@ async function iniciarAnalise(projeto, repositorio) {
 }
 
 async function loopAnaliseProjetos(projetos, repositorio) {
-  for (let projeto of projetos) {
+  const promises = projetos.map(async (projeto) => {
     await iniciarAnalise(projeto, repositorio);
-  }
+  });
+
+  await Promise.all(promises);
 }
 
 function gravarLog(mensagem) {
