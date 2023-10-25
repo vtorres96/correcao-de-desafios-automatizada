@@ -16,10 +16,9 @@ function executarCollection(collection) {
 
   const options = {
     collection: collection,
-    environment: environment,
+    environment: environment
   };
 
-  console.log(options)
   return new Promise((resolve, reject) => {
     newman.run(options, function (error, summary) {
       if (error) {

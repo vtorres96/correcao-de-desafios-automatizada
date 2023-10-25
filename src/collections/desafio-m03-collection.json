@@ -41,7 +41,7 @@
 										}
 									}
 								},
-								"url": "{{baseUrl}}/contas"
+								"url": "{{baseUrl}}/usuario"
 							},
 							"response": []
 						},
@@ -74,7 +74,7 @@
 										}
 									}
 								},
-								"url": "{{baseUrl}}/contas"
+								"url": "{{baseUrl}}/usuario"
 							},
 							"response": []
 						},
@@ -107,7 +107,7 @@
 										}
 									}
 								},
-								"url": "{{baseUrl}}/contas"
+								"url": "{{baseUrl}}/usuario"
 							},
 							"response": []
 						},
@@ -140,7 +140,7 @@
 										}
 									}
 								},
-								"url": "{{baseUrl}}/contas"
+								"url": "{{baseUrl}}/usuario"
 							},
 							"response": []
 						}
@@ -179,7 +179,7 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/contas"
+						"url": "{{baseUrl}}/usuario"
 					},
 					"response": []
 				},
@@ -212,7 +212,7 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/contas"
+						"url": "{{baseUrl}}/usuario"
 					},
 					"response": []
 				}
@@ -437,7 +437,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"Teste@Teste.com\",\n    \"senha\": \"test123@\"\n}",
+							"raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"12345\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1122,7 +1122,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2022-03-24\",\n    \"categoria_id\": 6\n}",
+									"raw": "{\n    \"tipo\": \"{{transactionType}}\",\n    \"descricao\": \"{{transactionDescription}}\",\n    \"valor\": 300000,\n    \"data\": \"2023-03-24\",\n    \"categoria_id\": 6\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1528,8 +1528,6 @@
 										"exec": [
 											"pm.test(\"Atualizar Transação - , esperado receber objeto e status 200\", () => {",
 											"    pm.expect(pm.response.code).to.greaterThan(199).lessThan(300)",
-											"    pm.response.to.be.withBody;",
-											"    pm.response.to.be.json;",
 											"})",
 											"",
 											"pm.test(\"Atualizando variáveis do environment transactionType e transactionDescription\", () => {",

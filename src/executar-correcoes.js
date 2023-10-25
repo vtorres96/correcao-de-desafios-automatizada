@@ -5,6 +5,7 @@ const killPort = require('kill-port');
 const { gerarNomenclaturaDiretorio } = require('./gerar-nomenclatura-diretorio');
 const { iniciarProcessamentoColecao } = require('./executar-collection');
 const projetos = require('../subdiretorios.json')["subdiretorios"];
+const { restaurarDados } = require('./utils/manipulaBanco');
 
 const args = process.argv;
 const repositorio = args[2];
@@ -37,10 +38,14 @@ async function processar(diretorio, repositorio) {
         if (executaProcesso) {
           executaProcesso = false;
           try {
+            if (arquivoCollection != "m02") {
+              console.log("restaurando dados do banco de dados...")
+              restaurarDados()
+            }
             await iniciarProcessamentoColecao(`Desafios/${diretorioDesafios}/${diretorio}`, collection);
             console.log('derrubando porta...')
             await killPort(portaServidor);
-            console.log('encerrando...')
+            console.log('encerrando...')          
             resolve();
           } catch (error) {
             console.error('Erro ao executar a coleção de testes:', error);
